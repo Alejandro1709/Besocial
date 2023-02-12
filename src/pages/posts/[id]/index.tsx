@@ -3,6 +3,7 @@ import Button from '@/components/Button';
 import Layout from '@/components/Layout';
 import Section from '@/components/Section';
 import { posts } from '@/data/feed';
+import NavLink from '@/components/NavLink';
 
 function PostPage() {
   const router = useRouter();
@@ -14,7 +15,10 @@ function PostPage() {
   return (
     <Layout title='Besocial | Post'>
       <Section>
-        <article className='flex flex-col gap-2 p-4 bg-white rounded-md border cursor-pointer'>
+        <NavLink href='/' type='primary'>
+          Back
+        </NavLink>
+        <article className='flex flex-col gap-2 p-4 mt-4 bg-white rounded-md border cursor-pointer'>
           <div className='flex flex-row justify-between items-center'>
             <div className='flex flex-row gap-2 items-center'>
               <img
@@ -30,7 +34,9 @@ function PostPage() {
               </div>
             </div>
             <div className='flex flex-row gap-2 items-center'>
-              <Button type='primary'>Edit</Button>
+              <NavLink href={`/posts/${id}/edit`} type='primary'>
+                Edit
+              </NavLink>
               <Button type='danger'>Delete</Button>
             </div>
           </div>
