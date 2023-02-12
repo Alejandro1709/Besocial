@@ -3,7 +3,7 @@ import Link from 'next/link';
 function Navbar() {
   return (
     <nav
-      className='sticky top-0 flex justify-between items-center h-14 border-b bg-white transition-all'
+      className='sticky top-0 flex justify-between items-center h-14 border-b bg-white'
       role='navigation'
     >
       <div className='flex flex-row justify-between items-center w-full md:mx-16 mx-4'>
@@ -13,9 +13,12 @@ function Navbar() {
           </Link>
         </div>
         <div className='flex flex-row'>
-          <button className='bg-blue-400 p-1 px-2 text-white hover:bg-blue-500 rounded'>
+          <Link
+            href='/login'
+            className='bg-transparent border-2 border-blue-500 p-1 px-2 text-blue-500 hover:bg-blue-500 hover:text-white rounded transition-all'
+          >
             Login
-          </button>
+          </Link>
         </div>
       </div>
     </nav>

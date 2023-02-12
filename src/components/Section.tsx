@@ -8,11 +8,7 @@ function Section({ flex, direction, children }: SectionProps) {
   const isFlex = flex ? 'flex' : '';
   const dir = direction === 'row' ? 'flex-row' : 'flex-col';
 
-  return (
-    <section className={`${isFlex} ${dir} w-full bg-green-200`}>
-      {children}
-    </section>
-  );
+  return <section className={`${isFlex} ${dir} w-full`}>{children}</section>;
 }
 
 export default Section;
