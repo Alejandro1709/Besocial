@@ -33,7 +33,7 @@ function Menu() {
   ];
 
   return (
-    <ul className='inline-flex flex-col gap-1 w-64 bg-white' role='navigation'>
+    <ul className='flex flex-col gap-1 bg-white border-b' role='navigation'>
       {NAVIGATION_LINKS.map((link) => (
         <MenuItem key={link.name} link={link} />
       ))}

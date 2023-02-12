@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import LeftPannel from './LeftPannel';
 import Navbar from './Navbar';
 
 type LayoutProps = {
@@ -21,7 +22,10 @@ function Layout({
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Navbar />
-      <main className='md:mx-16 bg-red-200'>{children}</main>
+      <div className='flex gap-16 md:mx-16 mx-4 bg-white'>
+        <LeftPannel />
+        <main className='mt-4 w-full'>{children}</main>
+      </div>
     </>
   );
 }
