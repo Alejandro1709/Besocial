@@ -44,7 +44,7 @@ function PostPage({ post }: Props) {
         </article>
       </Section>
       <Section mt={4}>
-        <h2 className='text-2xl font-medium'>22 Comments</h2>
+        <h2 className='text-2xl font-medium'>1 Comment</h2>
         <div className='flex flex-col gap-4 my-4'>
           <article className='flex flex-col gap-2 p-4 bg-white rounded-md border cursor-pointer'>
             <div className='flex flex-row justify-between items-center'>
