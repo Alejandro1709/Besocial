@@ -1,16 +1,16 @@
-import { useRouter } from 'next/router';
 import Button from '@/components/Button';
 import Layout from '@/components/Layout';
 import Section from '@/components/Section';
-import { posts } from '@/data/feed';
 import NavLink from '@/components/NavLink';
+import { prisma } from '@/utils/prisma';
+import type IPost from '@/types/post';
 
-function PostPage() {
-  const router = useRouter();
+type Props = {
+  post: string;
+};
 
-  const { id } = router.query;
-
-  const post = posts.find((post) => post.id === id);
+function PostPage({ post }: Props) {
+  const parsedPost: IPost = JSON.parse(post);
 
   return (
     <Layout title='Besocial | Post'>
@@ -22,25 +22,25 @@ function PostPage() {
           <div className='flex flex-row justify-between items-center'>
             <div className='flex flex-row gap-2 items-center'>
               <img
-                src={post?.author.avatar}
-                alt={post?.author.name}
+                src={parsedPost.author.avatar}
+                alt={parsedPost.author.name}
                 className='w-10 h-10 rounded-full'
               />
               <div className=''>
                 <h1 className='font-medium text-gray-700'>
-                  {post?.author.name}
+                  {parsedPost.author.name}
                 </h1>
                 <p className='text-gray-500 text-sm'>2 hours ago</p>
               </div>
             </div>
             <div className='flex flex-row gap-2 items-center'>
-              <NavLink href={`/posts/${id}/edit`} type='primary'>
+              <NavLink href={`/posts/${parsedPost.id}/edit`} type='primary'>
                 Edit
               </NavLink>
               <Button type='danger'>Delete</Button>
             </div>
           </div>
-          <p className='text-gray-700'>{post?.content}</p>
+          <p className='text-gray-700'>{parsedPost.content}</p>
         </article>
       </Section>
       <Section mt={4}>
@@ -75,3 +75,22 @@ function PostPage() {
 }
 
 export default PostPage;
+
+export async function getServerSideProps(ctx: {
+  params: { id: string | number };
+}) {
+  const post = await prisma.post.findUnique({
+    where: {
+      id: Number(ctx.params.id),
+    },
+    include: {
+      author: true,
+    },
+  });
+
+  return {
+    props: {
+      post: JSON.stringify(post),
+    },
+  };
+}

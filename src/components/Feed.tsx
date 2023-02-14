@@ -1,10 +1,11 @@
 import Post from './Post';
 import type IPost from '@/types/post';
-import { posts } from '@/data/feed';
 
-const feed: IPost[] = posts;
+type Props = {
+  feed: IPost[];
+};
 
-function Feed() {
+function Feed({ feed }: Props) {
   return (
     <div className='flex flex-col gap-4 my-4'>
       {feed.map((post) => (
